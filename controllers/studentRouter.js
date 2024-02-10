@@ -1,13 +1,30 @@
-const express=require("express")
-const studentModel=require("../models/studentModel")
-const router=express.Router()
-router.post("/add",async(req,res)=>{
-    let data=req.body
-    let student=new studentModel(data)
-    let result=await student.save()
-    res.json({
-        status:"success"
-    })
+const express = require("express")
+const router = express.Router()
+const bcrypt = require("bcryptjs")
+
+hashPasswordGenerator = async (pass) => {
+    const salt = await bcrypt.genSalt(10)
+    return bcrypt.hash(pass, salt)
+}
+
+const studentModel = require("../models/studentModel")
+router.post("/signup", async (req, res) => {
+
+    let { data } = { "data": req.body }
+    let password = data.password
+    
+const hashedPassword=await hashPasswordGenerator(password)
+data.password=hashedPassword
+let blog = new studentModel(data)
+            let result = await blog.save()
+            res.json({
+                status: "success"
+            })
+
+
 
 })
-module.exports=router
+
+
+
+module.exports = router
