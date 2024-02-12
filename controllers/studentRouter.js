@@ -8,15 +8,15 @@ hashPasswordGenerator = async (pass) => {
 }
 
 const studentModel = require("../models/studentModel")
-router.post("/signup", async (req, res) => {
+router.post("/addstud", async (req, res) => {
 
     let { data } = { "data": req.body }
     let password = data.password
     
 const hashedPassword=await hashPasswordGenerator(password)
 data.password=hashedPassword
-let blog = new studentModel(data)
-            let result = await blog.save()
+let student = new studentModel(data)
+let result = await student.save()
             res.json({
                 status: "success"
             })
