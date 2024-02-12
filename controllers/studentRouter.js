@@ -25,6 +25,11 @@ let result = await student.save()
 
 })
 
+router.get("/viewstud",async(req,res)=>{
+    let data=await studentModel.find()
+    res.json(data)
+})
+
 
 
 module.exports = router
