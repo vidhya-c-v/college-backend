@@ -8,6 +8,7 @@ app.use(cors())
 mongoose.connect("mongodb+srv://vidhya_14:vidhya_14@cluster0.u7pxfo8.mongodb.net/collegeDb?retryWrites=true&w=majority",
 {useNewUrlParser:true})
 app.use("/api/college",studentRouter)
+// app.use("/api/mark",markRouter)
 app.listen(3001,()=>{
     console.log("server runnnig")
 })
